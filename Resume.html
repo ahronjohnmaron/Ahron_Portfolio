@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Image Page</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Hide scrollbars */
+            display: flex; /* Use flexbox for centering */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            background-color: #000; /* Fallback background */
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+        
+        /* Container for the buttons */
+        .button-container {
+            position: fixed; /* Position relative to the browser window */
+            top: 20px;
+            right: 20px;
+            z-index: 10; /* Make sure buttons are on top of the image */
+        }
+        
+        /* Style for the buttons */
+        .button-container a {
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-left: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: background-color 0.3s ease;
+        }
+        
+        /* Hover effect for the buttons */
+        .button-container a:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="button-container">
+        <a href="main.html">Back to Home</a>
+
+        <a href="resume.pdf" download>Download</a>
+    </div>
+
+    <img src="resume.png" alt="My Full Page Image">
+
+</body>
+</html>
