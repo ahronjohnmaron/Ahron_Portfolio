@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahron John Barlis | Virtual Assistant</title>
+    <link rel="icon" href="logo1.png">
+    
+    <!-- Optimized Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          screens: {
+            'xs': '320px',
+            'sm': '640px',
+            'md': '768px',
+            'lg': '1024px',
+            'xl': '1280px',
+            '2xl': '1536px',
+          },
+          fontFamily: {
+            'sans': ['system-ui', '-apple-system', 'sans-serif'],
+            'grotesk': ['system-ui', '-apple-system', 'sans-serif']
+          },
+          extend: {
+            colors: {
+              darkbg: "#0a0a0b",
+              darkbg2: "#1a1a1d",
+              purple: "#6366f1",
+              cyan: "#06b6d4",
+              pink: "#ec4899",
+              muted: "#71717a",
+            }
+          }
+        }
+      }
+    </script>
+    
+    <!-- Critical CSS for low-end devices -->
+    <style>
+        /* Performance optimizations */
+        * { box-sizing: border-box; }
+        body { 
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+        }
+        
+        /* Reduced motion for low-end devices */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        /* Optimized scrollbar */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #1a1a1d; }
+        ::-webkit-scrollbar-thumb { background: #6366f1; }
+        .dark ::-webkit-scrollbar-track { background: #f3f4f6; }
+        .dark ::-webkit-scrollbar-thumb { background: #6366f1; }
+        
+        /* Image optimization */
+        img { 
+            max-width: 100%; 
+            height: auto; 
+            display: block; 
+        }
+        
+        /* Focus styles for accessibility */
+        button:focus, a:focus, input:focus, textarea:focus {
+            outline: 2px solid #6366f1;
+            outline-offset: 2px;
+        }
+        
+        /* Fallback for no-JS */
+        .no-js .typing-effect { opacity: 1; }
+        .no-js .fade-in { opacity: 1; }
+    </style>
+    
+    <!-- Load fonts only if supported -->
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    </noscript>
+</head>
+<body class="bg-darkbg text-white font-sans min-h-screen transition-colors duration-200 dark:bg-white dark:text-gray-900">
+
+<nav class="fixed left-1/2 top-4 xs:top-2 sm:top-8 z-50 -translate-x-1/2 w-[95%] xs:w-[98%] sm:w-auto flex items-center justify-between xs:gap-2 sm:gap-4 md:gap-8 px-3 xs:px-4 sm:px-8 py-2 bg-black bg-opacity-50 dark:bg-white dark:bg-opacity-50 backdrop-blur-sm border border-zinc-700 dark:border-gray-300 rounded-full shadow-lg transition-colors duration-200">
+  <a href="#hero" class="font-bold text-lg xs:text-xl sm:text-xl font-grotesk text-purple shrink-0">Ahron</a>
+  
+  <!-- Desktop Navigation -->
+  <ul class="hidden lg:flex gap-6 list-none">
+    <li><a href="#about" class="px-4 py-1 rounded-full text-zinc-400 dark:text-gray-600 hover:text-purple hover:bg-purple/10 transition-colors duration-200 text-sm">About</a></li>
+    <li><a href="#education" class="px-4 py-1 rounded-full text-zinc-400 dark:text-gray-600 hover:text-purple hover:bg-purple/10 transition-colors duration-200 text-sm">Education</a></li>
+    <li><a href="#Certificate" class="px-4 py-1 rounded-full text-zinc-400 dark:text-gray-600 hover:text-purple hover:bg-purple/10 transition-colors duration-200 text-sm">Certificate</a></li>
+    <li><a href="#experience" class="px-4 py-1 rounded-full text-zinc-400 dark:text-gray-600 hover:text-purple hover:bg-purple/10 transition-colors duration-200 text-sm">Experience</a></li>
+    <li><a href="#skills" class="px-4 py-1 rounded-full text-zinc-400 dark:text-gray-600 hover:text-purple hover:bg-purple/10 transition-colors duration-200 text-sm">Skills</a></li>
+    <li><a href="#tools" class="px-4 py-1 rounded-full text-zinc-400 dark:text-gray-600 hover:text-purple hover:bg-purple/10 transition-colors duration-200 text-sm">Tools</a></li>
+    <li><a href="#works" class="px-4 py-1 rounded-full text-zinc-400 dark:text-gray-600 hover:text-purple hover:bg-purple/10 transition-colors duration-200 text-sm">Works</a></li>
+    <li><a href="#contact" class="px-4 py-1 rounded-full text-zinc-400 dark:text-gray-600 hover:text-purple hover:bg-purple/10 transition-colors duration-200 text-sm">Contact</a></li>
+  </ul>
+  
+  <!-- Theme Toggle & Mobile Menu -->
+  <div class="flex items-center gap-2">
+    <button id="theme-toggle" class="w-8 h-8 xs:w-9 xs:h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-full border border-zinc-700 dark:border-gray-300 hover:bg-purple/20 transition-colors duration-200 shrink-0" aria-label="Toggle theme">
+      <span class="dark:hidden text-sm">🌙</span>
+      <span class="hidden dark:inline text-sm">☀️</span>
+    </button>
+    <button id="hamburger" class="lg:hidden text-lg xs:text-xl text-purple shrink-0" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<div id="mobile-menu" class="fixed left-2 xs:left-4 top-16 xs:top-14 sm:top-20 right-2 xs:right-4 z-40 lg:hidden hidden bg-darkbg2 dark:bg-zinc-800 border border-zinc-700 dark:border-gray-300 rounded-xl p-4 xs:p-6 backdrop-blur-sm transition-colors duration-200">
+  <ul class="flex flex-col gap-1 xs:gap-2">
+    <li><a href="#about" class="px-3 xs:px-4 py-2 block rounded-full text-zinc-400 dark:text-gray-600 hover:text-purple hover:bg-purple/10 text-sm xs:text-base transition-colors duration-200">About</a></li>
+    <li><a href="#education" class="px-3 xs:px-4 py-2 block rounded-full text-zinc-400 dark:text-gray-600 hover:text-purple hover:bg-purple/10 text-sm xs:text-base transition-colors duration-200">Education</a></li>
+    <li><a href="#Certificate" class="px-3 xs:px-4 py-2 block rounded-full text-zinc-400 dark:text-gray-600 hover:text-purple hover:bg-purple/10 text-sm xs:text-base transition-colors duration-200">Certificate</a></li>
+    <li><a href="#experience" class="px-3 xs:px-4 py-2 block rounded-full text-zinc-400 dark:text-gray-600 hover:text-purple hover:bg-purple/10 text-sm xs:text-base transition-colors duration-200">Experience</a></li>
+    <li><a href="#skills" class="px-3 xs:px-4 py-2 block rounded-full text-zinc-400 dark:text-gray-600 hover:text-purple hover:bg-purple/10 text-sm xs:text-base transition-colors duration-200">Skills</a></li>
+    <li><a href="#tools" class="px-3 xs:px-4 py-2 block rounded-full text-zinc-400 dark:text-gray-600 hover:text-purple hover:bg-purple/10 text-sm xs:text-base transition-colors duration-200">Tools</a></li>
+    <li><a href="#works" class="px-3 xs:px-4 py-2 block rounded-full text-zinc-400 dark:text-gray-600 hover:text-purple hover:bg-purple/10 text-sm xs:text-base transition-colors duration-200">Works</a></li>
+    <li><a href="#contact" class="px-3 xs:px-4 py-2 block rounded-full text-zinc-400 dark:text-gray-600 hover:text-purple hover:bg-purple/10 text-sm xs:text-base transition-colors duration-200">Contact</a></li>
+    <li>
+      <button id="mobile-theme-toggle" class="w-full flex items-center justify-center gap-2 mt-4 xs:mt-6 px-3 xs:px-4 py-2 border border-zinc-700 dark:border-gray-300 rounded-full text-sm xs:text-base transition-colors duration-200">
+        🌙 Toggle Theme
+      </button>
+    </li>
+  </ul>
+</div>
+
+<main>
+  <!-- Hero Section -->
+  <section id="hero" class="min-h-screen flex items-center justify-center relative bg-gradient-to-b from-purple/5 to-darkbg dark:from-blue-50 dark:to-white transition-colors duration-200 pt-20 xs:pt-16 sm:pt-24">
+    <div class="grid lg:grid-cols-2 gap-6 xs:gap-8 sm:gap-12 max-w-5xl p-4 xs:p-6 sm:p-8 z-10 w-full">
+      <div class="space-y-4 xs:space-y-6 sm:space-y-8 flex flex-col justify-center order-2 lg:order-1">
+        <h1 class="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-bold font-grotesk text-white dark:text-gray-900 mb-2 xs:mb-3 leading-tight">Ahron John Barlis</h1>
+        <p id="typing-effect" class="text-sm xs:text-base sm:text-lg text-zinc-500 dark:text-zinc-800 leading-relaxed"></p>
+        <div class="flex flex-col xs:flex-row gap-3 xs:gap-4 mb-2 xs:mb-3">
+          <a href="#contact" class="inline-flex items-center justify-center gap-2 px-4 xs:px-6 py-2.5 xs:py-3 rounded-full font-semibold bg-purple text-white hover:bg-indigo-500 transition-colors duration-200 text-sm xs:text-base">
+            📅 Book a Call
+          </a>
+          <a href="Resume.html" class="inline-flex items-center justify-center gap-2 px-4 xs:px-6 py-2.5 xs:py-3 rounded-full font-semibold border border-zinc-700 dark:border-gray-300 text-white dark:text-gray-900 bg-darkbg dark:bg-gray-100 hover:bg-purple/10 dark:hover:bg-gray-200 transition-colors duration-200 text-sm xs:text-base">
+            📄 My Resume
+          </a>
+        </div>
+        <div class="flex flex-col xs:flex-row xs:items-center gap-3 xs:gap-4">
+          <span class="text-xs xs:text-sm text-zinc-500 dark:text-gray-600">Follow me:</span>
+          <div class="flex gap-3 xs:gap-4">
+            <a href="https://www.linkedin.com/in/ahron-john-barlis-57b173288/" target="_blank" class="w-8 h-8 xs:w-10 xs:h-10 rounded-full overflow-hidden bg-zinc-700 dark:bg-gray-300 transition hover:scale-105">
+              <img src="lilogo.png" alt="LinkedIn" class="w-full h-full object-cover" loading="lazy">
+            </a>
+            <a href="https://www.onlinejobs.ph/jobseekers/info/2943262" target="_blank" class="w-8 h-8 xs:w-10 xs:h-10 rounded-full overflow-hidden bg-zinc-700 dark:bg-gray-300 transition hover:scale-105">
+              <img src="ojlogo1.png" alt="OnlineJobs" class="w-full h-full object-cover" loading="lazy">
+            </a>
+            <a href="https://www.instagram.com/ahron.io/" target="_blank" class="w-8 h-8 xs:w-10 xs:h-10 rounded-full overflow-hidden bg-zinc-700 dark:bg-gray-300 transition hover:scale-105">
+              <img src="gemcon.png" alt="Instagram" class="w-full h-full object-cover" loading="lazy">
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center justify-center relative order-1 lg:order-2">
+        <img src="img1.png" alt="Ahron John Barlis" class="w-64 h-64 xs:w-72 xs:h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 object-cover rounded-full border-4 border-zinc-700 dark:border-gray-300 shadow-lg" loading="lazy">
+        <div class="absolute inset-0 rounded-full bg-gradient-to-r from-purple to-pink opacity-20 blur-3xl -z-10"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="px-4 xs:px-6 sm:px-8 py-16 xs:py-20 sm:py-24 bg-darkbg2 dark:bg-gray-100 transition-colors duration-200">
+    <div class="max-w-5xl mx-auto grid lg:grid-cols-2 gap-8 xs:gap-10 sm:gap-12 items-center">
+      <div class="relative order-2 lg:order-1">
+        <img src="imgfull2.png" alt="Catrina" class="w-full rounded-2xl border border-purple dark:border-gray-400 shadow" loading="lazy">
+        <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-pink to-amber-400 opacity-20 blur-lg -z-10"></div>
+      </div>
+      <div class="order-1 lg:order-2">
+        <h3 class="font-bold text-2xl xs:text-3xl sm:text-3xl font-grotesk mb-3 xs:mb-4 text-white dark:text-gray-900 leading-tight">Creative & Adaptable Technologist</h3>
+        <p class="text-zinc-400 dark:text-gray-700 mb-3 xs:mb-4 text-sm xs:text-base leading-relaxed">I'm a passionate specialist with a knack for solving technical challenges and improving system efficiency. With a strong foundation in IT support and computer science, I love turning complex hardware and software issues into stable, reliable solutions that empower users and drive business growth.</p>
+        <p class="text-zinc-400 dark:text-gray-700 mb-3 xs:mb-4 text-sm xs:text-base leading-relaxed">When I'm not studying or coding, you can find me exploring new developments in cloud and AI technologies, you'll often find me exploring the latest tech innovations, brainstorming creative ways to solve problems, or enjoying playing online games.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education" class="px-4 xs:px-6 sm:px-8 py-16 xs:py-20 sm:py-24">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="font-bold text-3xl xs:text-4xl sm:text-4xl mb-8 xs:mb-10 sm:mb-12 font-grotesk text-cyan dark:text-blue-600 text-center lg:text-left">Education Attainment</h2>
+      <div class="grid sm:grid-cols-2 gap-6 xs:gap-8">
+        <div class="bg-gray-900 dark:bg-gray-200 rounded-xl border border-zinc-700 dark:border-gray-300 p-4 xs:p-6 shadow transition-colors duration-200">
+          <h3 class="font-semibold text-lg xs:text-xl text-white dark:text-gray-900 mb-2 leading-tight">Information and Communication Technology</h3>
+          <p class="mb-2 text-zinc-400 dark:text-gray-700 text-sm xs:text-base">Echague National High School</p>
+          <span class="text-cyan dark:text-blue-600 font-bold text-xs xs:text-sm">2017 – 2023</span>
+        </div>
+        <div class="bg-gray-900 dark:bg-gray-200 rounded-xl border border-zinc-700 dark:border-gray-300 p-4 xs:p-6 shadow transition-colors duration-200">
+          <h3 class="font-semibold text-lg xs:text-xl text-white dark:text-gray-900 mb-2 leading-tight">Bachelor of Science in Computer Science</h3>
+          <p class="mb-2 text-zinc-400 dark:text-gray-700 text-sm xs:text-base">Isabela State University</p>
+          <span class="text-cyan dark:text-blue-600 font-bold text-xs xs:text-sm">2023 - 2027</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Certificates Subsection -->
+    <div id="Certificate" class="max-w-5xl mx-auto mt-12 xs:mt-14 sm:mt-16">
+      <h2 class="font-bold text-3xl xs:text-4xl sm:text-4xl mb-8 xs:mb-10 sm:mb-12 font-grotesk text-pink dark:text-pink-600 text-center lg:text-left">Certificates</h2>
+      <div class="grid sm:grid-cols-2 gap-6 xs:gap-8">
+        <div class="bg-gray-900 dark:bg-gray-200 rounded-xl border border-zinc-700 dark:border-gray-300 p-4 xs:p-6 shadow flex flex-col items-center text-center transition-colors duration-200">
+          <img src="awslogo.png" width="60" height="60" alt="AWS AI" class="mb-3 xs:w-20 xs:h-20" loading="lazy">
+          <h3 class="font-semibold text-base xs:text-lg text-white dark:text-gray-900 mb-2 leading-tight">AWS Certified AI Practitioner</h3>
+          <p class="mb-3 text-zinc-400 dark:text-gray-700 text-xs xs:text-sm leading-relaxed">Strengthened my understanding of AI concepts and AWS tools, enhancing my ability to adapt to new technologies and provide efficient, cloud-powered solutions.</p>
+          <span class="text-cyan dark:text-blue-600 font-bold text-xs mb-3">2025 - 2028</span>
+          <a href="https://www.credly.com/badges/3386e5cc-b491-460d-9cf3-9cb9bda0ba22/public_url?fbclid=IwY2xjawM58GBleHRuA2FlbQIxMABicmlkETFLSjE5Um9Ld0Y5MHNIY05zAR4lS5O-PLtdYDYSIBDL6osar8tfS_MQB_s0WZ1cjgwYGcRUeN_Tfi5UnlSiRg_aem_lfVgYYm14OMa33szLv2QiA" target="_blank" class="inline-block px-4 xs:px-6 py-2 rounded-full font-semibold bg-purple text-white hover:bg-indigo-500 text-xs xs:text-sm transition-colors duration-200">View Certificate</a>
+        </div>
+        <div class="bg-gray-900 dark:bg-gray-200 rounded-xl border border-zinc-700 dark:border-gray-300 p-4 xs:p-6 shadow flex flex-col items-center text-center transition-colors duration-200">
+          <img src="tesdalogo1.png" width="60" height="60" alt="TESDA" class="mb-3 xs:w-20 xs:h-20" loading="lazy">
+          <h3 class="font-semibold text-base xs:text-lg text-white dark:text-gray-900 mb-2 leading-tight">Computer Systems Servicing NC II</h3>
+          <p class="mb-3 text-zinc-400 dark:text-gray-700 text-xs xs:text-sm leading-relaxed">Developed my skills in computer system setup, troubleshooting, and maintenance, enabling me to provide reliable technical support and ensure smooth day-to-day operations.</p>
+          <span class="text-cyan dark:text-blue-600 font-bold text-xs mb-3">2023 - 2028</span>
+          <a href="https://t2mis.tesda.gov.ph/RWAC/IndexProc2?searchLName=barlis&searchFName=ahron+john&firstFour=2302&lastFour=1882" target="_blank" class="inline-block px-4 xs:px-6 py-2 rounded-full font-semibold bg-purple text-white hover:bg-indigo-500 text-xs xs:text-sm transition-colors duration-200">View Certificate</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="px-4 xs:px-6 sm:px-8 py-16 xs:py-20 sm:py-24">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="font-bold text-3xl xs:text-4xl sm:text-4xl mb-8 xs:mb-10 sm:mb-12 font-grotesk text-yellow-500 dark:text-yellow-600 text-center lg:text-left">Work Experience</h2>
+      <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-6 xs:gap-8">
+        <div class="bg-gray-900 dark:bg-gray-200 rounded-xl border border-zinc-700 dark:border-gray-300 p-4 xs:p-6 shadow transition-colors duration-200">
+          <h3 class="font-semibold text-lg xs:text-xl text-white dark:text-gray-900 mb-2 leading-tight">Lead Generation Specialist</h3>
+          <p class="mb-1 text-zinc-400 dark:text-gray-700 text-xs xs:text-sm">Independent Contractor – Graham Meglino</p>
+          <span class="text-cyan dark:text-blue-600 font-bold text-xs mb-3 block">2025 – PRESENT</span>
+          <p class="text-zinc-400 dark:text-gray-700 text-xs xs:text-sm leading-relaxed">Directed B2B lead generation campaigns by researching 150+ prospects using LinkedIn Sales Navigator and Apollo.io. Created custom email/message automation tools using Selenium, delivering 25% pipeline growth and 15 qualified appointments monthly.</p>
+        </div>
+        <div class="bg-gray-900 dark:bg-gray-200 rounded-xl border border-zinc-700 dark:border-gray-300 p-4 xs:p-6 shadow transition-colors duration-200">
+          <h3 class="font-semibold text-lg xs:text-xl text-white dark:text-gray-900 mb-2 leading-tight">Virtual Assistant – Social Account Creation</h3>
+          <span class="text-cyan dark:text-blue-600 font-bold text-xs mb-3 block">2024 – 2025</span>
+          <p class="text-zinc-400 dark:text-gray-700 text-xs xs:text-sm leading-relaxed">Managed creation of social accounts using proxies and advanced tools. Ensured integrity and anonymity for marketing and outreach campaigns.</p>
+        </div>
+        <div class="bg-gray-900 dark:bg-gray-200 rounded-xl border border-zinc-700 dark:border-gray-300 p-4 xs:p-6 shadow sm:col-span-2 xl:col-span-1 transition-colors duration-200">
+          <h3 class="font-semibold text-lg xs:text-xl text-white dark:text-gray-900 mb-2 leading-tight">IT Support Intern</h3>
+          <p class="mb-1 text-zinc-400 dark:text-gray-700 text-xs xs:text-sm">Department of Education – Affiliated Schools</p>
+          <span class="text-cyan dark:text-blue-600 font-bold text-xs mb-3 block">2023 – 2024</span>
+          <p class="text-zinc-400 dark:text-gray-700 text-xs xs:text-sm leading-relaxed">Supported 200+ users, resolved hardware/software issues weekly, deployed LANs, secured operating systems on 20+ devices, and authored documentation reducing recurring problems by 15%.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="px-4 xs:px-6 sm:px-8 py-16 xs:py-20 sm:py-24 bg-darkbg2 dark:bg-gray-100 transition-colors duration-200">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="font-bold text-3xl xs:text-4xl sm:text-4xl mb-8 xs:mb-10 sm:mb-12 font-grotesk text-pink dark:text-pink-600 text-center lg:text-left">Skills & Expertise</h2>
+      <div class="flex flex-wrap gap-2 xs:gap-3 sm:gap-4 justify-center lg:justify-start">
+        <span class="px-3 xs:px-4 sm:px-5 py-1.5 xs:py-2 rounded-full border border-purple/60 dark:border-gray-400 text-zinc-400 dark:text-gray-700 bg-white/5 dark:bg-zinc-200 hover:bg-purple hover:text-white transition-colors duration-200 cursor-pointer text-xs xs:text-sm">Business & Lead Generation</span>
+        <span class="px-3 xs:px-4 sm:px-5 py-1.5 xs:py-2 rounded-full border border-purple/60 dark:border-gray-400 text-zinc-400 dark:text-gray-700 bg-white/5 dark:bg-zinc-200 hover:bg-purple hover:text-white transition-colors duration-200 cursor-pointer text-xs xs:text-sm">Social Media Management</span>
+        <span class="px-3 xs:px-4 sm:px-5 py-1.5 xs:py-2 rounded-full border border-purple/60 dark:border-gray-400 text-zinc-400 dark:text-gray-700 bg-white/5 dark:bg-zinc-200 hover:bg-purple hover:text-white transition-colors duration-200 cursor-pointer text-xs xs:text-sm">IT Support & Networking</span>
+        <span class="px-3 xs:px-4 sm:px-5 py-1.5 xs:py-2 rounded-full border border-purple/60 dark:border-gray-400 text-zinc-400 dark:text-gray-700 bg-white/5 dark:bg-zinc-200 hover:bg-purple hover:text-white transition-colors duration-200 cursor-pointer text-xs xs:text-sm">Client Relations & Retention</span>
+        <span class="px-3 xs:px-4 sm:px-5 py-1.5 xs:py-2 rounded-full border border-purple/60 dark:border-gray-400 text-zinc-400 dark:text-gray-700 bg-white/5 dark:bg-zinc-200 hover:bg-purple hover:text-white transition-colors duration-200 cursor-pointer text-xs xs:text-sm">Programming & Development</span>
+        <span class="px-3 xs:px-4 sm:px-5 py-1.5 xs:py-2 rounded-full border border-purple/60 dark:border-gray-400 text-zinc-400 dark:text-gray-700 bg-white/5 dark:bg-zinc-200 hover:bg-purple hover:text-white transition-colors duration-200 cursor-pointer text-xs xs:text-sm">Databases & Cloud</span>
+        <span class="px-3 xs:px-4 sm:px-5 py-1.5 xs:py-2 rounded-full border border-purple/60 dark:border-gray-400 text-zinc-400 dark:text-gray-700 bg-white/5 dark:bg-zinc-200 hover:bg-purple hover:text-white transition-colors duration-200 cursor-pointer text-xs xs:text-sm">Productivity & Collaboration</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tools Section -->
+  <section id="tools" class="px-4 xs:px-6 sm:px-8 py-16 xs:py-20 sm:py-24">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="font-bold text-3xl xs:text-4xl sm:text-4xl mb-8 xs:mb-10 sm:mb-12 font-grotesk text-cyan dark:text-blue-600 text-center lg:text-left">Tools & Systems</h2>
+      <div class="flex flex-wrap gap-2 xs:gap-3 sm:gap-4 justify-center lg:justify-start">
+        <span class="px-3 xs:px-4 sm:px-5 py-1.5 xs:py-2 rounded-full border border-purple/60 dark:border-gray-400 text-zinc-400 dark:text-gray-700 bg-white/5 dark:bg-zinc-200 text-xs xs:text-sm">Notion</span>
+        <span class="px-3 xs:px-4 sm:px-5 py-1.5 xs:py-2 rounded-full border border-purple/60 dark:border-gray-400 text-zinc-400 dark:text-gray-700 bg-white/5 dark:bg-zinc-200 text-xs xs:text-sm">Canva</span>
+        <span class="px-3 xs:px-4 sm:px-5 py-1.5 xs:py-2 rounded-full border border-purple/60 dark:border-gray-400 text-zinc-400 dark:text-gray-700 bg-white/5 dark:bg-zinc-200 text-xs xs:text-sm">Microsoft Office Suite</span>
+        <span class="px-3 xs:px-4 sm:px-5 py-1.5 xs:py-2 rounded-full border border-purple/60 dark:border-gray-400 text-zinc-400 dark:text-gray-700 bg-white/5 dark:bg-zinc-200 text-xs xs:text-sm">AWS</span>
+        <span class="px-3 xs:px-4 sm:px-5 py-1.5 xs:py-2 rounded-full border border-purple/60 dark:border-gray-400 text-zinc-400 dark:text-gray-700 bg-white/5 dark:bg-zinc-200 text-xs xs:text-sm">Google Workspace</span>
+        <span class="px-3 xs:px-4 sm:px-5 py-1.5 xs:py-2 rounded-full border border-purple/60 dark:border-gray-400 text-zinc-400 dark:text-gray-700 bg-white/5 dark:bg-zinc-200 text-xs xs:text-sm">LinkedIn</span>
+        <span class="px-3 xs:px-4 sm:px-5 py-1.5 xs:py-2 rounded-full border border-purple/60 dark:border-gray-400 text-zinc-400 dark:text-gray-700 bg-white/5 dark:bg-zinc-200 text-xs xs:text-sm">Instagram</span>
+        <span class="px-3 xs:px-4 sm:px-5 py-1.5 xs:py-2 rounded-full border border-purple/60 dark:border-gray-400 text-zinc-400 dark:text-gray-700 bg-white/5 dark:bg-zinc-200 text-xs xs:text-sm">Remote Desktop</span>
+        <span class="px-3 xs:px-4 sm:px-5 py-1.5 xs:py-2 rounded-full border border-purple/60 dark:border-gray-400 text-zinc-400 dark:text-gray-700 bg-white/5 dark:bg-zinc-200 text-xs xs:text-sm">Python</span>
+        <span class="px-3 xs:px-4 sm:px-5 py-1.5 xs:py-2 rounded-full border border-purple/60 dark:border-gray-400 text-zinc-400 dark:text-gray-700 bg-white/5 dark:bg-zinc-200 text-xs xs:text-sm">Proxy</span>
+        <span class="px-3 xs:px-4 sm:px-5 py-1.5 xs:py-2 rounded-full border border-purple/60 dark:border-gray-400 text-zinc-400 dark:text-gray-700 bg-white/5 dark:bg-zinc-200 text-xs xs:text-sm">Apollo.io</span>
+        <span class="px-3 xs:px-4 sm:px-5 py-1.5 xs:py-2 rounded-full border border-purple/60 dark:border-gray-400 text-zinc-400 dark:text-gray-700 bg-white/5 dark:bg-zinc-200 text-xs xs:text-sm">Git & GitHub</span>
+        <span class="px-3 xs:px-4 sm:px-5 py-1.5 xs:py-2 rounded-full border border-purple/60 dark:border-gray-400 text-zinc-400 dark:text-gray-700 bg-white/5 dark:bg-zinc-200 text-xs xs:text-sm">Google Cloud</span>
+        <span class="px-3 xs:px-4 sm:px-5 py-1.5 xs:py-2 rounded-full border border-purple/60 dark:border-gray-400 text-zinc-400 dark:text-gray-700 bg-white/5 dark:bg-zinc-200 text-xs xs:text-sm">C++</span>
+        <span class="px-3 xs:px-4 sm:px-5 py-1.5 xs:py-2 rounded-full border border-purple/60 dark:border-gray-400 text-zinc-400 dark:text-gray-700 bg-white/5 dark:bg-zinc-200 text-xs xs:text-sm">JavaScript</span>
+        <span class="px-3 xs:px-4 sm:px-5 py-1.5 xs:py-2 rounded-full border border-purple/60 dark:border-gray-400 text-zinc-400 dark:text-gray-700 bg-white/5 dark:bg-zinc-200 text-xs xs:text-sm">HTML & CSS</span>
+        <span class="px-3 xs:px-4 sm:px-5 py-1.5 xs:py-2 rounded-full border border-purple/60 dark:border-gray-400 text-zinc-400 dark:text-gray-700 bg-white/5 dark:bg-zinc-200 text-xs xs:text-sm">HubSpot</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Works Section -->
+  <section id="works" class="px-4 xs:px-6 sm:px-8 py-16 xs:py-20 sm:py-24 bg-gray-900 bg-opacity-50 dark:bg-gray-100 transition-colors duration-200">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="font-bold text-3xl xs:text-4xl sm:text-4xl mb-8 xs:mb-10 sm:mb-12 font-grotesk text-purple dark:text-purple-600 text-center">Sample Works</h2>
+      
+      <!-- Website Projects -->
+      <div class="mb-8 xs:mb-10 sm:mb-12">
+        <h3 class="text-xl xs:text-2xl font-bold font-grotesk mb-3 xs:mb-4 text-white dark:text-gray-900 text-center">Website</h3>
+        <p class="text-zinc-400 dark:text-gray-700 text-center mb-4 xs:mb-6 text-sm xs:text-base">Responsive sites built with HTML, CSS, JS, and backend solutions in Python, C++.</p>
+        <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-4 xs:gap-6 sm:gap-8">
+          <div class="bg-gray-800 dark:bg-gray-200 rounded-xl border border-zinc-700 dark:border-gray-300 overflow-hidden shadow transition-colors duration-200">
+            <img src="web1.png" alt="School Static Website" class="w-full h-32 xs:h-36 sm:h-42 object-cover" loading="lazy">
+            <div class="p-3 xs:p-4 sm:p-6 text-center">
+              <h4 class="font-semibold text-sm xs:text-base sm:text-lg mb-2 text-white dark:text-gray-900">School Static Website</h4>
+              <a href="https://enhschool.github.io/enhs.github.io/index.html" target="_blank" class="inline-block px-3 xs:px-4 py-1.5 xs:py-2 bg-purple text-white rounded-full hover:bg-indigo-500 text-xs xs:text-sm transition-colors duration-200">View Work</a>
+            </div>
+          </div>
+          <div class="bg-gray-800 dark:bg-gray-200 rounded-xl border border-zinc-700 dark:border-gray-300 overflow-hidden shadow transition-colors duration-200">
+            <img src="web2.png" alt="Coffee Shop" class="w-full h-32 xs:h-36 sm:h-42 object-cover" loading="lazy">
+            <div class="p-3 xs:p-4 sm:p-6 text-center">
+              <h4 class="font-semibold text-sm xs:text-base sm:text-lg mb-2 text-white dark:text-gray-900">Coffee Shop</h4>
+              <a href="https://ahronjohnmaron.github.io/Craftbrew/coffee.html" target="_blank" class="inline-block px-3 xs:px-4 py-1.5 xs:py-2 bg-purple text-white rounded-full hover:bg-indigo-500 text-xs xs:text-sm transition-colors duration-200">View Work</a>
+            </div>
+          </div>
+          <div class="bg-gray-800 dark:bg-gray-200 rounded-xl border border-zinc-700 dark:border-gray-300 overflow-hidden shadow sm:col-span-2 xl:col-span-1 transition-colors duration-200">
+            <img src="web3.png" alt="Restaurant" class="w-full h-32 xs:h-36 sm:h-42 object-cover" loading="lazy">
+            <div class="p-3 xs:p-4 sm:p-6 text-center">
+              <h4 class="font-semibold text-sm xs:text-base sm:text-lg mb-2 text-white dark:text-gray-900">Restaurant</h4>
+              <a href="https://ahronjohnmaron.github.io/Craftbrew/restaurant_website.html" target="_blank" class="inline-block px-3 xs:px-4 py-1.5 xs:py-2 bg-purple text-white rounded-full hover:bg-indigo-500 text-xs xs:text-sm transition-colors duration-200">View Work</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Lead Generation Projects -->
+      <div class="mb-8 xs:mb-10 sm:mb-12">
+        <h3 class="text-xl xs:text-2xl font-bold font-grotesk mb-3 xs:mb-4 text-white dark:text-gray-900 text-center">Lead Generation & Outreach</h3>
+        <p class="text-zinc-400 dark:text-gray-700 text-center mb-4 xs:mb-6 text-sm xs:text-base">CRM database management, campaign execution using Excel sheets.</p>
+        <div class="grid sm:grid-cols-2 gap-4 xs:gap-6 sm:gap-8">
+          <div class="bg-gray-800 dark:bg-gray-200 rounded-xl border border-zinc-700 dark:border-gray-300 overflow-hidden shadow transition-colors duration-200">
+            <img src="VA1.png" alt="Excel Sheet" class="w-full h-32 xs:h-36 sm:h-42 object-cover" loading="lazy">
+            <div class="p-3 xs:p-4 sm:p-6 text-center">
+              <h4 class="font-semibold text-sm xs:text-base sm:text-lg mb-2 text-white dark:text-gray-900">Excel Sheet</h4>
+              <a href="VA1.png" target="_blank" class="inline-block px-3 xs:px-4 py-1.5 xs:py-2 bg-purple text-white rounded-full hover:bg-indigo-500 text-xs xs:text-sm transition-colors duration-200">View Work</a>
+            </div>
+          </div>
+          <div class="bg-gray-800 dark:bg-gray-200 rounded-xl border border-zinc-700 dark:border-gray-300 overflow-hidden shadow transition-colors duration-200">
+            <img src="VA.png" alt="Excel Sheet" class="w-full h-32 xs:h-36 sm:h-42 object-cover" loading="lazy">
+            <div class="p-3 xs:p-4 sm:p-6 text-center">
+              <h4 class="font-semibold text-sm xs:text-base sm:text-lg mb-2 text-white dark:text-gray-900">Excel Sheet</h4>
+              <a href="VA.png" target="_blank" class="inline-block px-3 xs:px-4 py-1.5 xs:py-2 bg-purple text-white rounded-full hover:bg-indigo-500 text-xs xs:text-sm transition-colors duration-200">View Work</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Tools Created -->
+      <div class="mb-8 xs:mb-10 sm:mb-12">
+        <h3 class="text-xl xs:text-2xl font-bold font-grotesk mb-3 xs:mb-4 text-white dark:text-gray-900 text-center">Tools Created</h3>
+        <p class="text-zinc-400 dark:text-gray-700 text-center mb-4 xs:mb-6 text-sm xs:text-base">Created targeted solutions for operational bottlenecks. Faster workflow.</p>
+        <div class="grid sm:grid-cols-2 gap-4 xs:gap-6 sm:gap-8">
+          <div class="bg-gray-800 dark:bg-gray-200 rounded-xl border border-zinc-700 dark:border-gray-300 p-6 xs:p-8 flex items-center justify-center min-h-[120px] xs:min-h-[140px] transition-colors duration-200">
+            <h4 class="font-semibold text-sm xs:text-base sm:text-lg text-white dark:text-gray-900 text-center">Email Automation Using Selenium</h4>
+          </div>
+          <div class="bg-gray-800 dark:bg-gray-200 rounded-xl border border-zinc-700 dark:border-gray-300 p-6 xs:p-8 flex items-center justify-center min-h-[120px] xs:min-h-[140px] transition-colors duration-200">
+            <h4 class="font-semibold text-sm xs:text-base sm:text-lg text-white dark:text-gray-900 text-center">Web Scrapping tool using Python</h4>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Sample Videos -->
+      <div>
+        <h3 class="text-xl xs:text-2xl font-bold font-grotesk mb-3 xs:mb-4 text-white dark:text-gray-900 text-center">Tiktok, Reels Ads</h3>
+        <p class="text-zinc-400 dark:text-gray-700 text-center mb-4 xs:mb-6 text-sm xs:text-base">Dynamic product ads via AI technology and design tools.</p>
+        <div class="grid sm:grid-cols-2 gap-4 xs:gap-6 sm:gap-8">
+          <div class="bg-gray-800 dark:bg-gray-200 rounded-xl border border-zinc-700 dark:border-gray-300 p-4 xs:p-6 transition-colors duration-200">
+            <video controls poster="thum.jpeg" class="w-full max-w-xs mx-auto mb-4 rounded-lg" preload="metadata">
+              <source src="sample.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <h4 class="font-semibold text-sm xs:text-base sm:text-lg text-white dark:text-gray-900 text-center">Video 1</h4>
+          </div>
+          <div class="bg-gray-800 dark:bg-gray-200 rounded-xl border border-zinc-700 dark:border-gray-300 p-4 xs:p-6 transition-colors duration-200">
+            <video controls poster="thum2.jpeg" class="w-full max-w-xs mx-auto mb-4 rounded-lg" preload="metadata">
+              <source src="sample2.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <h4 class="font-semibold text-sm xs:text-base sm:text-lg text-white dark:text-gray-900 text-center">Video 2</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="px-4 xs:px-6 sm:px-8 py-16 xs:py-20 sm:py-24">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="font-bold text-3xl xs:text-4xl sm:text-4xl mb-8 xs:mb-10 sm:mb-12 font-grotesk text-purple dark:text-purple-600 text-center">Get In Touch</h2>
+      <p class="text-zinc-400 dark:text-gray-700 text-center mb-6 xs:mb-8 text-sm xs:text-base">Have a project in mind or want to learn more? Let's connect.</p>
+      <form id="contact-form" name="submit-to-google-sheet" class="space-y-4 xs:space-y-6">
+        <div>
+          <input type="text" name="Name" placeholder="Your Name" required class="w-full px-4 xs:px-5 py-3 xs:py-4 rounded-xl border border-zinc-700 dark:border-gray-300 bg-gray-900 dark:bg-gray-200 text-zinc-400 dark:text-gray-900 placeholder-zinc-500 dark:placeholder-gray-600 transition-colors duration-200 text-sm xs:text-base focus:outline-none focus:border-purple">
+        </div>
+        <div>
+          <input type="email" name="Email" placeholder="Your Email" required class="w-full px-4 xs:px-5 py-3 xs:py-4 rounded-xl border border-zinc-700 dark:border-gray-300 bg-gray-900 dark:bg-gray-200 text-zinc-400 dark:text-gray-900 placeholder-zinc-500 dark:placeholder-gray-600 transition-colors duration-200 text-sm xs:text-base focus:outline-none focus:border-purple">
+        </div>
+        <div>
+          <textarea name="Message" rows="4" placeholder="Your Message" required class="w-full px-4 xs:px-5 py-3 xs:py-4 rounded-xl border border-zinc-700 dark:border-gray-300 bg-gray-900 dark:bg-gray-200 text-zinc-400 dark:text-gray-900 placeholder-zinc-500 dark:placeholder-gray-600 transition-colors duration-200 text-sm xs:text-base focus:outline-none focus:border-purple"></textarea>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="inline-flex items-center gap-2 px-6 xs:px-8 py-2.5 xs:py-3 rounded-full font-semibold bg-purple text-white hover:bg-indigo-500 transition-colors duration-200 text-sm xs:text-base">
+            ✉️ Send Message
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-darkbg2 dark:bg-gray-200 py-8 xs:py-10 sm:py-12 border-t border-zinc-700 dark:border-gray-300 transition-colors duration-200">
+  <div class="max-w-5xl mx-auto text-center flex flex-col items-center gap-3 xs:gap-4 px-4">
+    <div class="flex gap-3 xs:gap-4">
+      <a href="mailto:ahronggwp10@gmail.com" class="text-muted dark:text-gray-600 hover:text-purple text-xl xs:text-2xl transition-colors duration-200" aria-label="Email">✉️</a>
+    </div>
+    <p class="text-muted dark:text-gray-600 text-xs xs:text-sm">&copy; 2025 Ahron John Barlis. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<!-- Optimized JavaScript for Low-End Devices -->
+<script>
+(function() {
+  'use strict';
+  
+  // Performance detection for low-end devices
+  var isLowEndDevice = navigator.hardwareConcurrency <= 2 || 
+                       navigator.deviceMemory <= 2 ||
+                       /Android 4|iPhone OS [4-6]/.test(navigator.userAgent);
+
+  // Theme toggling logic
+  var themeToggle = document.getElementById('theme-toggle');
+  var mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+  var htmlEl = document.documentElement;
+
+  function setTheme(isDark) {
+    if (isDark) {
+      htmlEl.classList.add('dark');
+      try {
+        localStorage.setItem('theme', 'dark');
+      } catch(e) {}
+    } else {
+      htmlEl.classList.remove('dark');
+      try {
+        localStorage.setItem('theme', 'light');
+      } catch(e) {}
+    }
+  }
+
+  // Load saved theme
+  var savedTheme = null;
+  try {
+    savedTheme = localStorage.getItem('theme');
+  } catch(e) {}
+  
+  if (savedTheme === 'dark' || (!savedTheme && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    htmlEl.classList.add('dark');
+  }
+
+  if (themeToggle) {
+    themeToggle.onclick = function() { setTheme(!htmlEl.classList.contains('dark')); };
+  }
+  if (mobileThemeToggle) {
+    mobileThemeToggle.onclick = function() { setTheme(!htmlEl.classList.contains('dark')); };
+  }
+
+  // Mobile menu toggle
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobile-menu');
+  
+  if (hamburger && mobileMenu) {
+    hamburger.onclick = function() {
+      mobileMenu.classList.toggle('hidden');
+    };
+
+    // Close menu on link click
+    var menuLinks = mobileMenu.querySelectorAll('a');
+    for (var i = 0; i < menuLinks.length; i++) {
+      menuLinks[i].onclick = function() {
+        mobileMenu.classList.add('hidden');
+      };
+    }
+  }
+
+  // Optimized typing effect
+  var typingText = "IT Support Specialist, Lead Generation Specialist, and Developer with hands-on experience in technical troubleshooting and data-driven business development. Proven ability to combine network configuration, systems deployment, FrontEnd web development and programming (Python, C++) with strategic prospect research to improve efficiency and drive measurable business growth.";
+  var typingElement = document.getElementById('typing-effect');
+  var typeIndex = 0;
+
+  function typeWriter() {
+    if (typingElement && typeIndex < typingText.length) {
+      typingElement.textContent += typingText.charAt(typeIndex);
+      typeIndex++;
+      setTimeout(typeWriter, isLowEndDevice ? 20 : 10);
+    }
+  }
+
+  if (typingElement && !isLowEndDevice) {
+    setTimeout(typeWriter, 500);
+  } else if (typingElement) {
+    typingElement.textContent = typingText;
+  }
+
+  // Contact form submission
+  var form = document.forms['submit-to-google-sheet'];
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var submitButton = form.querySelector('button[type="submit"]');
+      var originalText = submitButton.textContent;
+      
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
+
+      var formData = new FormData(form);
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', 'https://script.google.com/macros/s/AKfycbyssrfLANfbyV64te1oYFoUtEzDnBdgPo0A-ri4LwNaXT-BRf8L1-UeGKBa_UjVUzSA/exec');
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          alert('Thank you for your message! I will get back to you soon.');
+          form.reset();
+        } else {
+          alert('Sorry, there was an error. Please try again.');
+        }
+        submitButton.disabled = false;
+        submitButton.textContent = originalText;
+      };
+      xhr.onerror = function() {
+        alert('Sorry, there was an error. Please try again.');
+        submitButton.disabled = false;
+        submitButton.textContent = originalText;
+      };
+      xhr.send(formData);
+    });
+  }
+
+  // Smooth scrolling with fallback
+  var anchorLinks = document.querySelectorAll('a[href^="#"]');
+  for (var i = 0; i < anchorLinks.length; i++) {
+    anchorLinks[i].addEventListener('click', function(e) {
+      e.preventDefault();
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        if ('scrollIntoView' in target && !isLowEndDevice) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          window.scrollTo(0, target.offsetTop - 80);
+        }
+      }
+    });
+  }
+
+  // Load external resources conditionally
+  if (window.fetch && window.Promise && !isLowEndDevice) {
+    // Load Font Awesome only for modern browsers
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css';
+    document.head.appendChild(link);
+    
+    // Load Google Fonts
+    var fontLink = document.createElement('link');
+    fontLink.href = 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap';
+    fontLink.rel = 'stylesheet';
+    document.head.appendChild(fontLink);
+  }
+})();
+</script>
+</body>
+</html>

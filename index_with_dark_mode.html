@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Louise Catrina | Virtual Assistant</title>
+    <link rel="icon" type="image/x-icon" href="pic2.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        'cream': '#FFF8F0',
+                        'sage': '#9CAF88',
+                        'terracotta': '#C65D00',
+                        'warm-gray': '#6B5B73',
+                        'soft-beige': '#F5F1EB'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* Minimal animations for low-end devices */
+        @media (prefers-reduced-motion: no-preference) {
+            .fade-up {
+                animation: fadeUp 0.6s ease-out forwards;
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            @keyframes fadeUp {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .stagger-1 { animation-delay: 0.1s; }
+            .stagger-2 { animation-delay: 0.2s; }
+            .stagger-3 { animation-delay: 0.3s; }
+            .stagger-4 { animation-delay: 0.4s; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .fade-up {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 2px; }
+        ::-webkit-scrollbar-track { background: #F5F1EB; }
+        ::-webkit-scrollbar-thumb { background: #9CAF88; }
+
+        .dark ::-webkit-scrollbar-track { background: #374151; }
+        .dark ::-webkit-scrollbar-thumb { background: #9CAF88; }
+
+        /* Typography optimization */
+        .text-balance { text-wrap: balance; }
+    </style>
+</head>
+<body class="bg-cream dark:bg-gray-900 text-warm-gray dark:text-gray-300 font-sans antialiased transition-colors duration-300">
+    <!-- Horizontal Navigation Bar -->
+    <nav class="fixed top-0 w-full bg-cream/90 dark:bg-gray-900/90 backdrop-blur-sm border-b border-sage/20 dark:border-gray-700 z-50 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="flex justify-between items-center h-16">
+                <div class="font-mono font-medium text-terracotta dark:text-orange-400">Ahron</div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#about" class="text-sm font-medium hover:text-terracotta dark:hover:text-orange-400 transition-colors">About</a>
+                    <a href="#journey" class="text-sm font-medium hover:text-terracotta dark:hover:text-orange-400 transition-colors">Journey</a>
+                    <a href="#expertise" class="text-sm font-medium hover:text-terracotta dark:hover:text-orange-400 transition-colors">Expertise</a>
+                    <a href="#portfolio" class="text-sm font-medium hover:text-terracotta dark:hover:text-orange-400 transition-colors">Portfolio</a>
+                    <a href="#connect" class="text-sm font-medium hover:text-terracotta dark:hover:text-orange-400 transition-colors">Connect</a>
+
+                    <!-- Dark Mode Toggle Button -->
+                    <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200" aria-label="Toggle dark mode">
+                        <!-- Sun icon (shown in dark mode) -->
+                        <svg id="sun-icon" class="w-5 h-5 text-yellow-500 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                        </svg>
+                        <!-- Moon icon (shown in light mode) -->
+                        <svg id="moon-icon" class="w-5 h-5 text-gray-700 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2" id="mobile-menu-btn">
+                    <div class="w-5 h-0.5 bg-warm-gray dark:bg-gray-300 mb-1 transition-colors"></div>
+                    <div class="w-5 h-0.5 bg-warm-gray dark:bg-gray-300 mb-1 transition-colors"></div>
+                    <div class="w-5 h-0.5 bg-warm-gray dark:bg-gray-300 transition-colors"></div>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div class="md:hidden hidden" id="mobile-menu">
+                <div class="py-4 space-y-3 border-t border-sage/20 dark:border-gray-700">
+                    <a href="#about" class="block text-sm font-medium hover:text-terracotta dark:hover:text-orange-400 transition-colors">About</a>
+                    <a href="#journey" class="block text-sm font-medium hover:text-terracotta dark:hover:text-orange-400 transition-colors">Journey</a>
+                    <a href="#expertise" class="block text-sm font-medium hover:text-terracotta dark:hover:text-orange-400 transition-colors">Expertise</a>
+                    <a href="#portfolio" class="block text-sm font-medium hover:text-terracotta dark:hover:text-orange-400 transition-colors">Portfolio</a>
+                    <a href="#connect" class="block text-sm font-medium hover:text-terracotta dark:hover:text-orange-400 transition-colors">Connect</a>
+                    <button id="mobile-theme-toggle" class="flex items-center space-x-2 text-sm font-medium hover:text-terracotta dark:hover:text-orange-400 transition-colors">
+                        <span>Toggle Theme</span>
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Hero Section - Side by Side Layout -->
+    <section class="pt-24 pb-12 min-h-screen flex items-center">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="grid lg:grid-cols-5 gap-12 items-center">
+                <!-- Left Content -->
+                <div class="lg:col-span-3 space-y-8">
+                    <div class="fade-up stagger-1">
+                        <p class="text-terracotta dark:text-orange-400 font-mono text-sm mb-2 transition-colors">Hello, I'm</p>
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-light text-warm-gray dark:text-white leading-tight text-balance transition-colors">
+                            Ahron John Barlis
+                        </h1>
+                    </div>
+
+                    <div class="fade-up stagger-2">
+                        <p class="text-lg md:text-xl text-warm-gray/80 dark:text-gray-300 leading-relaxed max-w-2xl transition-colors" id="typewriter"></p>
+                    </div>
+
+                    <div class="fade-up stagger-3 flex flex-col sm:flex-row gap-4">
+                        <a href="#connect" class="inline-flex items-center justify-center px-6 py-3 bg-terracotta hover:bg-terracotta/90 dark:bg-orange-600 dark:hover:bg-orange-700 text-cream font-medium rounded-none transition-colors">
+                            Start a Project
+                        </a>
+                        <a href="Resume.html" class="inline-flex items-center justify-center px-6 py-3 border border-sage hover:bg-sage hover:text-cream dark:border-gray-600 dark:hover:bg-gray-600 text-sage dark:text-gray-300 font-medium rounded-none transition-colors">
+                            View Resume
+                        </a>
+                    </div>
+
+                    <div class="fade-up stagger-4 flex items-center space-x-6">
+                        <span class="text-sm font-mono text-warm-gray/60 dark:text-gray-400 transition-colors">Connect:</span>
+                        <div class="flex space-x-4">
+                            <a href="https://www.linkedin.com/in/louise-catrina-palattao-chra-0b7b1a197/" target="_blank" class="w-8 h-8 rounded-full overflow-hidden hover:scale-105 transition-transform">
+                                <img src="lilogo.png" alt="LinkedIn" class="w-full h-full object-cover">
+                            </a>
+                            <a href="https://www.onlinejobs.ph/jobseekers/info/3171159" target="_blank" class="w-8 h-8 rounded-full overflow-hidden hover:scale-105 transition-transform">
+                                <img src="ojlogo1.png" alt="OnlineJobs" class="w-full h-full object-cover">
+                            </a>
+                            <a href="https://www.upwork.com/freelancers/~0183ed15dce6827e0a" target="_blank" class="w-8 h-8 rounded-full overflow-hidden hover:scale-105 transition-transform">
+                                <img src="gemcon.png" alt="Upwork" class="w-full h-full object-cover">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Image -->
+                <div class="lg:col-span-2 fade-up stagger-2">
+                    <div class="relative max-w-sm mx-auto">
+                        <img src="img1.png" alt="Louise Catrina" class="w-full aspect-square object-cover rounded-none border-8 border-soft-beige dark:border-gray-700 transition-colors">
+                        <div class="absolute -bottom-4 -right-4 w-full h-full bg-sage/20 dark:bg-orange-400/20 -z-10 rounded-none transition-colors"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- About Section - Minimal Text Block -->
+    <section id="about" class="py-20 bg-soft-beige dark:bg-gray-800 transition-colors duration-300">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="text-center space-y-8">
+                <h2 class="text-3xl md:text-4xl font-light text-warm-gray dark:text-white transition-colors">About Me</h2>
+                <div class="max-w-3xl mx-auto">
+                    <p class="text-lg leading-relaxed text-warm-gray/80 dark:text-gray-300 mb-6 transition-colors">
+                        I'm a passionate specialist with a knack for creating clean, elegant, and efficient pipelines. With a strong foundation in lead generation, I love turning complex problems into beautiful, intuitive digital experiences.
+                    </p>
+                    <p class="text-lg leading-relaxed text-warm-gray/80 dark:text-gray-300 transition-colors">
+                        When I'm not working, you can find me exploring the latest tech trends, contributing to open-source projects, or enjoying a good cup of coffee.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Journey Section - Timeline Layout -->
+    <section id="journey" class="py-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <h2 class="text-3xl md:text-4xl font-light text-warm-gray dark:text-white text-center mb-16 transition-colors">My Journey</h2>
+
+            <!-- Education -->
+            <div class="mb-16">
+                <h3 class="text-xl font-medium text-terracotta dark:text-orange-400 mb-8 font-mono transition-colors">Education</h3>
+                <div class="space-y-6">
+                    <div class="border-l-2 border-sage/30 dark:border-gray-600 pl-6 pb-6 transition-colors">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2">
+                            <h4 class="font-medium text-warm-gray dark:text-gray-200 transition-colors">Bachelor of Science in Psychology</h4>
+                            <span class="text-sm font-mono text-terracotta dark:text-orange-400 transition-colors">2021 - 2025</span>
+                        </div>
+                        <p class="text-warm-gray/70 dark:text-gray-400 transition-colors">Isabela State University</p>
+                    </div>
+                    <div class="border-l-2 border-sage/30 dark:border-gray-600 pl-6 transition-colors">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2">
+                            <h4 class="font-medium text-warm-gray dark:text-gray-200 transition-colors">Humanities & Social Science Strand</h4>
+                            <span class="text-sm font-mono text-terracotta dark:text-orange-400 transition-colors">2019 - 2021</span>
+                        </div>
+                        <p class="text-warm-gray/70 dark:text-gray-400 transition-colors">School of Our Lady of Atocha</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience -->
+            <div>
+                <h3 class="text-xl font-medium text-terracotta dark:text-orange-400 mb-8 font-mono transition-colors">Experience</h3>
+                <div class="space-y-8">
+                    <article class="border-l-2 border-sage/30 dark:border-gray-600 pl-6 pb-6 transition-colors">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2">
+                            <h4 class="font-medium text-warm-gray dark:text-gray-200 transition-colors">Social Media Assistant</h4>
+                            <span class="text-sm font-mono text-terracotta dark:text-orange-400 transition-colors">2025 - Present</span>
+                        </div>
+                        <p class="text-sm text-sage dark:text-green-400 mb-3 transition-colors">Journey Through Meditation</p>
+                        <p class="text-warm-gray/80 dark:text-gray-300 leading-relaxed transition-colors">
+                            Managed social media strategy across Instagram, LinkedIn, and Facebook, significantly growing followers and engagement within the wellness niche. Published compelling blog content on Squarespace and built online communities.
+                        </p>
+                    </article>
+
+                    <article class="border-l-2 border-sage/30 dark:border-gray-600 pl-6 pb-6 transition-colors">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2">
+                            <h4 class="font-medium text-warm-gray dark:text-gray-200 transition-colors">Lead Generation Specialist</h4>
+                            <span class="text-sm font-mono text-terracotta dark:text-orange-400 transition-colors">2024 - 2025</span>
+                        </div>
+                        <p class="text-sm text-sage dark:text-green-400 mb-3 transition-colors">Independent Contractor – Graham Meglino</p>
+                        <p class="text-warm-gray/80 dark:text-gray-300 leading-relaxed transition-colors">
+                            Spearheaded lead generation through LinkedIn, Instagram, and Google research. Implemented outreach campaigns that improved response rates by 30% and consistently generated qualified leads.
+                        </p>
+                    </article>
+
+                    <article class="border-l-2 border-sage/30 dark:border-gray-600 pl-6 pb-6 transition-colors">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2">
+                            <h4 class="font-medium text-warm-gray dark:text-gray-200 transition-colors">Virtual Assistant – Amazon KDP & Audible</h4>
+                            <span class="text-sm font-mono text-terracotta dark:text-orange-400 transition-colors">2024 - 2025</span>
+                        </div>
+                        <p class="text-sm text-sage dark:text-green-400 mb-3 transition-colors">Books by Cooper</p>
+                        <p class="text-warm-gray/80 dark:text-gray-300 leading-relaxed transition-colors">
+                            Managed author accounts on Amazon KDP and Audible, streamlined content distribution, and coordinated promotional strategies that increased book visibility by 25%.
+                        </p>
+                    </article>
+
+                    <article class="border-l-2 border-sage/30 dark:border-gray-600 pl-6 transition-colors">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2">
+                            <h4 class="font-medium text-warm-gray dark:text-gray-200 transition-colors">Client Relations & Instagram Lead Generation</h4>
+                            <span class="text-sm font-mono text-terracotta dark:text-orange-400 transition-colors">2023 - 2024</span>
+                        </div>
+                        <p class="text-sm text-sage dark:text-green-400 mb-3 transition-colors">Medspa Majesty</p>
+                        <p class="text-warm-gray/80 dark:text-gray-300 leading-relaxed transition-colors">
+                            Executed high-volume outreach strategy engaging 100+ daily prospects on Instagram. Recommended website optimization strategies that improved booking conversions.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Expertise Section - Grid Cards -->
+    <section id="expertise" class="py-20 bg-soft-beige dark:bg-gray-800 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <h2 class="text-3xl md:text-4xl font-light text-warm-gray dark:text-white text-center mb-16 transition-colors">Areas of Expertise</h2>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-16">
+                <div class="space-y-4">
+                    <h3 class="text-xl font-medium text-terracotta dark:text-orange-400 font-mono transition-colors">Skills</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-4 py-2 bg-cream dark:bg-gray-700 border border-sage/30 dark:border-gray-600 text-sm text-warm-gray dark:text-gray-200 transition-colors">Lead Generation</span>
+                        <span class="px-4 py-2 bg-cream dark:bg-gray-700 border border-sage/30 dark:border-gray-600 text-sm text-warm-gray dark:text-gray-200 transition-colors">Social Media Management</span>
+                        <span class="px-4 py-2 bg-cream dark:bg-gray-700 border border-sage/30 dark:border-gray-600 text-sm text-warm-gray dark:text-gray-200 transition-colors">Amazon KDP & Audible</span>
+                        <span class="px-4 py-2 bg-cream dark:bg-gray-700 border border-sage/30 dark:border-gray-600 text-sm text-warm-gray dark:text-gray-200 transition-colors">Client Relations</span>
+                        <span class="px-4 py-2 bg-cream dark:bg-gray-700 border border-sage/30 dark:border-gray-600 text-sm text-warm-gray dark:text-gray-200 transition-colors">Content Creation</span>
+                        <span class="px-4 py-2 bg-cream dark:bg-gray-700 border border-sage/30 dark:border-gray-600 text-sm text-warm-gray dark:text-gray-200 transition-colors">CRM Strategy</span>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="text-xl font-medium text-terracotta dark:text-orange-400 font-mono transition-colors">Tools</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-4 py-2 bg-cream dark:bg-gray-700 border border-sage/30 dark:border-gray-600 text-sm text-warm-gray dark:text-gray-200 transition-colors">Notion</span>
+                        <span class="px-4 py-2 bg-cream dark:bg-gray-700 border border-sage/30 dark:border-gray-600 text-sm text-warm-gray dark:text-gray-200 transition-colors">Canva</span>
+                        <span class="px-4 py-2 bg-cream dark:bg-gray-700 border border-sage/30 dark:border-gray-600 text-sm text-warm-gray dark:text-gray-200 transition-colors">Microsoft Office</span>
+                        <span class="px-4 py-2 bg-cream dark:bg-gray-700 border border-sage/30 dark:border-gray-600 text-sm text-warm-gray dark:text-gray-200 transition-colors">Squarespace</span>
+                        <span class="px-4 py-2 bg-cream dark:bg-gray-700 border border-sage/30 dark:border-gray-600 text-sm text-warm-gray dark:text-gray-200 transition-colors">LinkedIn</span>
+                        <span class="px-4 py-2 bg-cream dark:bg-gray-700 border border-sage/30 dark:border-gray-600 text-sm text-warm-gray dark:text-gray-200 transition-colors">Instagram</span>
+                        <span class="px-4 py-2 bg-cream dark:bg-gray-700 border border-sage/30 dark:border-gray-600 text-sm text-warm-gray dark:text-gray-200 transition-colors">Slack</span>
+                        <span class="px-4 py-2 bg-cream dark:bg-gray-700 border border-sage/30 dark:border-gray-600 text-sm text-warm-gray dark:text-gray-200 transition-colors">Google Workspace</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Portfolio Section - Masonry-style Layout -->
+    <section id="portfolio" class="py-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <h2 class="text-3xl md:text-4xl font-light text-warm-gray dark:text-white text-center mb-16 transition-colors">Selected Works</h2>
+
+            <!-- Category 1 -->
+            <div class="mb-16">
+                <div class="flex items-center mb-8">
+                    <div class="w-8 h-px bg-sage dark:bg-green-400 mr-4 transition-colors"></div>
+                    <h3 class="text-lg font-medium text-terracotta dark:text-orange-400 font-mono transition-colors">Design Support</h3>
+                </div>
+                <p class="text-warm-gray/80 dark:text-gray-300 mb-8 max-w-3xl transition-colors">
+                    Created digital assets including ebooks, social media posts, and infographics based on client guidelines. Delivered consistent, branded visuals that supported marketing campaigns.
+                </p>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="group">
+                        <div class="aspect-square bg-soft-beige dark:bg-gray-700 mb-4 overflow-hidden transition-colors">
+                            <img src="canva1.png" alt="Construction Busy Book" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <h4 class="font-medium text-warm-gray dark:text-gray-200 mb-2 transition-colors">Construction Busy Book</h4>
+                        <a href="canva1.pdf" target="_blank" class="text-sm text-terracotta dark:text-orange-400 hover:underline font-mono transition-colors">View Project →</a>
+                    </div>
+                    <div class="group">
+                        <div class="aspect-square bg-soft-beige dark:bg-gray-700 mb-4 overflow-hidden transition-colors">
+                            <img src="canva2.png" alt="Infographic" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <h4 class="font-medium text-warm-gray dark:text-gray-200 mb-2 transition-colors">Infographic Design</h4>
+                        <a href="canva2.png" target="_blank" class="text-sm text-terracotta dark:text-orange-400 hover:underline font-mono transition-colors">View Project →</a>
+                    </div>
+                    <div class="group">
+                        <div class="aspect-square bg-soft-beige dark:bg-gray-700 mb-4 overflow-hidden transition-colors">
+                            <img src="canva3.jpeg" alt="Social Media Post" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <h4 class="font-medium text-warm-gray dark:text-gray-200 mb-2 transition-colors">Social Media Post</h4>
+                        <a href="POST.pdf" target="_blank" class="text-sm text-terracotta dark:text-orange-400 hover:underline font-mono transition-colors">View Project →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 2 -->
+            <div class="mb-16">
+                <div class="flex items-center mb-8">
+                    <div class="w-8 h-px bg-sage dark:bg-green-400 mr-4 transition-colors"></div>
+                    <h3 class="text-lg font-medium text-terracotta dark:text-orange-400 font-mono transition-colors">Lead Generation</h3>
+                </div>
+                <p class="text-warm-gray/80 dark:text-gray-300 mb-8 max-w-3xl transition-colors">
+                    Built targeted lead lists across LinkedIn, Instagram, and Google for coaching and nutrition industries. Implemented structured outreach campaigns with 30% improved response rates.
+                </p>
+                <div class="grid sm:grid-cols-2 gap-6">
+                    <div class="group">
+                        <div class="aspect-video bg-soft-beige dark:bg-gray-700 mb-4 overflow-hidden transition-colors">
+                            <img src="VA1.png" alt="Lead Generation Sheet" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <h4 class="font-medium text-warm-gray dark:text-gray-200 mb-2 transition-colors">Lead Database</h4>
+                        <a href="VA1.pdf" target="_blank" class="text-sm text-terracotta dark:text-orange-400 hover:underline font-mono transition-colors">View Project →</a>
+                    </div>
+                    <div class="group">
+                        <div class="aspect-video bg-soft-beige dark:bg-gray-700 mb-4 overflow-hidden transition-colors">
+                            <img src="VA.png" alt="Lead Generation Sheet" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <h4 class="font-medium text-warm-gray dark:text-gray-200 mb-2 transition-colors">Prospect Research</h4>
+                        <a href="VA.pdf" target="_blank" class="text-sm text-terracotta dark:text-orange-400 hover:underline font-mono transition-colors">View Project →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 3 -->
+            <div class="mb-16">
+                <div class="flex items-center mb-8">
+                    <div class="w-8 h-px bg-sage dark:bg-green-400 mr-4 transition-colors"></div>
+                    <h3 class="text-lg font-medium text-terracotta dark:text-orange-400 font-mono transition-colors">Social Engagement</h3>
+                </div>
+                <p class="text-warm-gray/80 dark:text-gray-300 mb-8 max-w-3xl transition-colors">
+                    Boosted client visibility through strategic social media engagement, daily interactions, and community building to enhance brand credibility.
+                </p>
+                <div class="grid sm:grid-cols-3 gap-6">
+                    <div class="group">
+                        <div class="aspect-square bg-soft-beige dark:bg-gray-700 mb-4 overflow-hidden transition-colors">
+                            <img src="socmed1.png" alt="Social Media Engagement" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <h4 class="font-medium text-warm-gray dark:text-gray-200 mb-2 transition-colors">Community Engagement</h4>
+                        <a href="socmed1.png" target="_blank" class="text-sm text-terracotta dark:text-orange-400 hover:underline font-mono transition-colors">View Project →</a>
+                    </div>
+                    <div class="group">
+                        <div class="aspect-square bg-soft-beige dark:bg-gray-700 mb-4 overflow-hidden transition-colors">
+                            <img src="socmed2.png" alt="Social Media Comments" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <h4 class="font-medium text-warm-gray dark:text-gray-200 mb-2 transition-colors">Content Interaction</h4>
+                        <a href="socmed2.png" target="_blank" class="text-sm text-terracotta dark:text-orange-400 hover:underline font-mono transition-colors">View Project →</a>
+                    </div>
+                    <div class="group">
+                        <div class="aspect-square bg-soft-beige dark:bg-gray-700 mb-4 overflow-hidden transition-colors">
+                            <img src="socmed3.PNG" alt="Direct Messages" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <h4 class="font-medium text-warm-gray dark:text-gray-200 mb-2 transition-colors">Direct Outreach</h4>
+                        <a href="socmed3.PNG" target="_blank" class="text-sm text-terracotta dark:text-orange-400 hover:underline font-mono transition-colors">View Project →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 4 -->
+            <div class="mb-16">
+                <div class="flex items-center mb-8">
+                    <div class="w-8 h-px bg-sage dark:bg-green-400 mr-4 transition-colors"></div>
+                    <h3 class="text-lg font-medium text-terracotta dark:text-orange-400 font-mono transition-colors">Publishing Support</h3>
+                </div>
+                <p class="text-warm-gray/80 dark:text-gray-300 mb-8 max-w-3xl transition-colors">
+                    Managed Amazon KDP and Audible accounts, coordinated promotional strategies, and streamlined publishing workflows for authors.
+                </p>
+                <div class="grid sm:grid-cols-3 gap-6">
+                    <div class="group">
+                        <div class="aspect-square bg-soft-beige dark:bg-gray-700 mb-4 overflow-hidden transition-colors">
+                            <img src="Aud1.PNG" alt="Audible Management" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <h4 class="font-medium text-warm-gray dark:text-gray-200 mb-2 transition-colors">Account Management</h4>
+                        <a href="Aud1.pdf" target="_blank" class="text-sm text-terracotta dark:text-orange-400 hover:underline font-mono transition-colors">View Project →</a>
+                    </div>
+                    <div class="group">
+                        <div class="aspect-square bg-soft-beige dark:bg-gray-700 mb-4 overflow-hidden transition-colors">
+                            <img src="Aud2.PNG" alt="KDP Dashboard" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <h4 class="font-medium text-warm-gray dark:text-gray-200 mb-2 transition-colors">KDP Management</h4>
+                        <a href="Aud2.pdf" target="_blank" class="text-sm text-terracotta dark:text-orange-400 hover:underline font-mono transition-colors">View Project →</a>
+                    </div>
+                    <div class="group">
+                        <div class="aspect-square bg-soft-beige dark:bg-gray-700 mb-4 overflow-hidden transition-colors">
+                            <img src="Aud3.PNG" alt="Promo Codes" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <h4 class="font-medium text-warm-gray dark:text-gray-200 mb-2 transition-colors">Promotion Strategy</h4>
+                        <a href="Aud3.pdf" target="_blank" class="text-sm text-terracotta dark:text-orange-400 hover:underline font-mono transition-colors">View Project →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 5 -->
+            <div>
+                <div class="flex items-center mb-8">
+                    <div class="w-8 h-px bg-sage dark:bg-green-400 mr-4 transition-colors"></div>
+                    <h3 class="text-lg font-medium text-terracotta dark:text-orange-400 font-mono transition-colors">Content Management</h3>
+                </div>
+                <p class="text-warm-gray/80 dark:text-gray-300 mb-8 max-w-3xl transition-colors">
+                    Published blog content on Squarespace, leading to measurable increases in site traffic and audience engagement.
+                </p>
+                <div class="grid sm:grid-cols-1 gap-6 max-w-lg">
+                    <div class="group">
+                        <div class="aspect-video bg-soft-beige dark:bg-gray-700 mb-4 overflow-hidden transition-colors">
+                            <img src="blog.png" alt="Blog Management" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <h4 class="font-medium text-warm-gray dark:text-gray-200 mb-2 transition-colors">Blog Management</h4>
+                        <a href="BlogWorks.pdf" target="_blank" class="text-sm text-terracotta dark:text-orange-400 hover:underline font-mono transition-colors">View Project →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Contact Section - Minimal Form -->
+    <section id="connect" class="py-20 bg-soft-beige dark:bg-gray-800 transition-colors duration-300">
+        <div class="max-w-2xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-light text-warm-gray dark:text-white mb-4 transition-colors">Let's Connect</h2>
+                <p class="text-warm-gray/80 dark:text-gray-300 transition-colors">Ready to start a project or have questions? I'd love to hear from you.</p>
+            </div>
+
+            <form class="space-y-6" name="submit-to-google-sheet" id="contact-form">
+                <div>
+                    <input type="text" name="Name" placeholder="Your Name" required 
+                           class="w-full px-0 py-4 bg-transparent border-0 border-b border-sage/30 dark:border-gray-600 focus:border-terracotta dark:focus:border-orange-400 focus:outline-none text-warm-gray dark:text-gray-200 placeholder-warm-gray/50 dark:placeholder-gray-400 transition-colors">
+                </div>
+                <div>
+                    <input type="email" name="Email" placeholder="Your Email" required 
+                           class="w-full px-0 py-4 bg-transparent border-0 border-b border-sage/30 dark:border-gray-600 focus:border-terracotta dark:focus:border-orange-400 focus:outline-none text-warm-gray dark:text-gray-200 placeholder-warm-gray/50 dark:placeholder-gray-400 transition-colors">
+                </div>
+                <div>
+                    <textarea name="Message" placeholder="Your Message" rows="4" required 
+                              class="w-full px-0 py-4 bg-transparent border-0 border-b border-sage/30 dark:border-gray-600 focus:border-terracotta dark:focus:border-orange-400 focus:outline-none text-warm-gray dark:text-gray-200 placeholder-warm-gray/50 dark:placeholder-gray-400 resize-none transition-colors"></textarea>
+                </div>
+                <div class="text-center pt-4">
+                    <button type="submit" class="px-8 py-3 bg-terracotta hover:bg-terracotta/90 dark:bg-orange-600 dark:hover:bg-orange-700 text-cream font-medium transition-colors">
+                        Send Message
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-sage/20 dark:border-gray-700 transition-colors">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                <p class="text-sm text-warm-gray/60 dark:text-gray-400 transition-colors">&copy; 2025 Louise Catrina. All rights reserved.</p>
+                <a href="mailto:louise.catrina.palattao@gmail.com" class="text-sm text-terracotta dark:text-orange-400 hover:underline font-mono transition-colors">
+                    louise.catrina.palattao@gmail.com
+                </a>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        // Dark mode functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+        const html = document.documentElement;
+
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+
+        if (currentTheme === 'dark') {
+            html.classList.add('dark');
+        }
+
+        function toggleTheme() {
+            html.classList.toggle('dark');
+
+            // Save theme preference
+            const isDark = html.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        // Add event listeners for both desktop and mobile theme toggles
+        themeToggle.addEventListener('click', toggleTheme);
+        mobileThemeToggle.addEventListener('click', toggleTheme);
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+
+        // Typewriter effect for hero
+        const typewriterText = "Virtual Assistant, Lead Generation Specialist, and Social Media Manager with 3+ years of experience supporting entrepreneurs, authors, and growing brands.";
+        const typewriterElement = document.getElementById('typewriter');
+        let typewriterIndex = 0;
+
+
+        function typeWriter() {
+            if (typewriterIndex < typewriterText.length) {
+                typewriterElement.textContent += typewriterText.charAt(typewriterIndex);
+                typewriterIndex++;
+                setTimeout(typeWriter, 30);
+            }
+        }
+
+
+        // Start typewriter effect when page loads
+        window.addEventListener('load', () => {
+            setTimeout(typeWriter, 1000);
+        });
+
+
+        // Intersection Observer for fade-up animations (performance optimized)
+        if ('IntersectionObserver' in window) {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '50px'
+            };
+
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-up');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+
+            // Only observe elements that aren't already visible
+            document.querySelectorAll('section > div, .group').forEach(el => {
+                if (el.getBoundingClientRect().top > window.innerHeight) {
+                    observer.observe(el);
+                }
+            });
+        }
+
+
+        // Contact form submission
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzG_YGMGlPxgwUke8NIkEvbSfVGS_CRem9uM_O8WWV0HoLn-6xFitjbUtPlK9rkpNtx/exec';
+        const form = document.forms['submit-to-google-sheet'];
+
+
+        if (form) {
+            form.addEventListener('submit', e => {
+                e.preventDefault();
+                const submitButton = form.querySelector('button');
+                const originalText = submitButton.textContent;
+
+                submitButton.disabled = true;
+                submitButton.textContent = 'Sending...';
+
+
+                fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                    .then(response => {
+                        alert('Thank you for your message! I will get back to you soon.');
+                        form.reset();
+                        submitButton.disabled = false;
+                        submitButton.textContent = originalText;
+                    })
+                    .catch(error => {
+                        alert('Sorry, there was an error sending your message. Please try again.');
+                        submitButton.disabled = false;
+                        submitButton.textContent = originalText;
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
